@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.github.prolobjectlink.prolog.interprolog.xsb;
+package io.github.prolobjectlink.prolog.interprolog.swi;
 
 import com.declarativa.interprolog.TermModel;
 
@@ -30,10 +30,10 @@ import io.github.prolobjectlink.prolog.interprolog.InterPrologConverter;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class XsbPrologConverter extends InterPrologConverter implements PrologConverter<TermModel> {
+public class SwiPrologConverter extends InterPrologConverter implements PrologConverter<TermModel> {
 
 	public PrologProvider createProvider() {
-		return new XsbProlog(this);
+		return new SwiProlog(this);
 	}
 
 	@Override

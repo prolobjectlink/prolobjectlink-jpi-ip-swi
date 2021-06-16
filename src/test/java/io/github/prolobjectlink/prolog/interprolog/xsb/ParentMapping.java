@@ -21,11 +21,11 @@
  */
 package io.github.prolobjectlink.prolog.interprolog.xsb;
 
-import io.github.prolobjectlink.prolog.PrologMapping;
 import io.github.prolobjectlink.prolog.PrologProvider;
 import io.github.prolobjectlink.prolog.PrologTerm;
+import io.github.prolobjectlink.prolog.Prologable;
 
-public class ParentMapping implements PrologMapping<Parent> {
+public class ParentMapping implements Prologable<Parent> {
 
 	@Override
 	public Parent fromTerm(PrologProvider provider, PrologTerm t) {

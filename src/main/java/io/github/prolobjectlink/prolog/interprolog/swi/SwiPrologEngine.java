@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package io.github.prolobjectlink.prolog.interprolog.xsb;
+package io.github.prolobjectlink.prolog.interprolog.swi;
 
 import java.util.List;
 
@@ -31,9 +31,9 @@ import io.github.prolobjectlink.prolog.interprolog.InterPrologEngine;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class XsbPrologEngine extends InterPrologEngine implements PrologEngine {
+public class SwiPrologEngine extends InterPrologEngine implements PrologEngine {
 
-	protected XsbPrologEngine(PrologProvider provider) {
+	protected SwiPrologEngine(PrologProvider provider) {
 		super(provider);
 	}
 

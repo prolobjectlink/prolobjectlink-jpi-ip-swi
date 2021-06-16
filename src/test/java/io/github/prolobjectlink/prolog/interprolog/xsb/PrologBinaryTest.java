@@ -35,7 +35,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import io.github.prolobjectlink.prolog.interprolog.xsb.XsbPrologConsole;
+import io.github.prolobjectlink.prolog.interprolog.swi.SwiPrologConsole;
 
 public class PrologBinaryTest extends PrologBaseTest {
 
@@ -64,7 +64,7 @@ public class PrologBinaryTest extends PrologBaseTest {
 		String script = bin.getProperty("Main.FileName");
 		assertEquals("pllink", script);
 		String main = bin.getProperty("Main.Class");
-		assertEquals(XsbPrologConsole.class.getName(), main);
+		assertEquals(SwiPrologConsole.class.getName(), main);
 
 		//
 		String line = null;
@@ -82,7 +82,7 @@ public class PrologBinaryTest extends PrologBaseTest {
 				line = buffer.readLine();
 			}
 
-			assertTrue(b.toString().contains(XsbPrologConsole.class.getName()));
+			assertTrue(b.toString().contains(SwiPrologConsole.class.getName()));
 
 			reader = new FileReader(sh);
 			buffer = new BufferedReader(reader);
@@ -93,7 +93,7 @@ public class PrologBinaryTest extends PrologBaseTest {
 				line = buffer.readLine();
 			}
 
-			assertTrue(b.toString().contains(XsbPrologConsole.class.getName()));
+			assertTrue(b.toString().contains(SwiPrologConsole.class.getName()));
 
 		} catch (FileNotFoundException e) {
 			provider.getLogger().error(getClass(), FILE_NOT_FOUND, e);
@@ -142,7 +142,7 @@ public class PrologBinaryTest extends PrologBaseTest {
 				line = buffer.readLine();
 			}
 
-			assertTrue(b.toString().contains(XsbPrologConsole.class.getName()));
+			assertTrue(b.toString().contains(SwiPrologConsole.class.getName()));
 
 			reader = new FileReader(sh);
 			buffer = new BufferedReader(reader);
@@ -153,7 +153,7 @@ public class PrologBinaryTest extends PrologBaseTest {
 				line = buffer.readLine();
 			}
 
-			assertTrue(b.toString().contains(XsbPrologConsole.class.getName()));
+			assertTrue(b.toString().contains(SwiPrologConsole.class.getName()));
 
 		} catch (FileNotFoundException e) {
 			provider.getLogger().error(getClass(), FILE_NOT_FOUND, e);
