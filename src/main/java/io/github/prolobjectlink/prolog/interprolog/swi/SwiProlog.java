@@ -23,8 +23,8 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.declarativa.interprolog.SWISubprocessEngine;
 import com.declarativa.interprolog.TermModel;
-import com.xsb.interprolog.NativeEngine;
 
 import io.github.prolobjectlink.prolog.PrologConverter;
 import io.github.prolobjectlink.prolog.PrologEngine;
@@ -74,7 +74,8 @@ public class SwiProlog extends InterPrologProvider implements PrologProvider {
 			xsbPath = xsbPath.replace('/', File.separatorChar);
 			xsbPath = xsbPath.replace('\\', File.separatorChar);
 			Logger.getLogger(SwiProlog.class.getName()).log(Level.INFO, xsbPath);
-			InterPrologEngine.engine = new NativeEngine(xsbPath);
+			// InterPrologEngine.engine = new NativeEngine(xsbPath);
+			InterPrologEngine.engine = new SWISubprocessEngine();
 		} catch (UnsatisfiedLinkError e) {
 			Logger.getLogger(SwiProlog.class.getName()).log(Level.SEVERE, null, e);
 		}
