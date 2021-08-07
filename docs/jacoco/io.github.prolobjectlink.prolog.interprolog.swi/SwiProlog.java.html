@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SwiProlog.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-ip-swi</a> &gt; <a href="index.source.html" class="el_package">io.github.prolobjectlink.prolog.interprolog.swi</a> &gt; <span class="el_source">SwiProlog.java</span></div><h1>SwiProlog.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-ip-swi
+ * %%
+ * Copyright (C) 2012 - 2019 WorkLogic Project
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+package io.github.prolobjectlink.prolog.interprolog.swi;
+
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.declarativa.interprolog.SWISubprocessEngine;
+import com.declarativa.interprolog.TermModel;
+
+import io.github.prolobjectlink.prolog.PrologConverter;
+import io.github.prolobjectlink.prolog.PrologEngine;
+import io.github.prolobjectlink.prolog.PrologJavaConverter;
+import io.github.prolobjectlink.prolog.PrologProvider;
+import io.github.prolobjectlink.prolog.interprolog.InterPrologEngine;
+import io.github.prolobjectlink.prolog.interprolog.InterPrologProvider;
+
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+public class SwiProlog extends InterPrologProvider implements PrologProvider {
+
+	static {
+		try {
+<span class="fc" id="L45">			String xsbdir = System.getenv(&quot;SWI_DIRECTORY&quot;);</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">			if (xsbdir == null) {</span>
+<span class="nc" id="L47">				throw new UnsatisfiedLinkError(&quot;Don't forget define SWI_DIRECTORY enviroment variable&quot;);</span>
+			}
+<span class="fc" id="L49">			StringBuilder builder = new StringBuilder();</span>
+<span class="fc" id="L50">			builder.append(xsbdir);</span>
+<span class="fc" id="L51">			builder.append(&quot;/bin&quot;);</span>
+<span class="fc" id="L52">			String swiPath = &quot;&quot; + builder + &quot;&quot;;</span>
+<span class="fc" id="L53">			swiPath = swiPath.replace('/', File.separatorChar);</span>
+<span class="fc" id="L54">			swiPath = swiPath.replace('\\', File.separatorChar);</span>
+<span class="fc" id="L55">			Logger.getLogger(SwiProlog.class.getName()).log(Level.INFO, swiPath);</span>
+<span class="fc" id="L56">			InterPrologEngine.engine = new SWISubprocessEngine(swiPath);</span>
+<span class="nc" id="L57">		} catch (UnsatisfiedLinkError e) {</span>
+<span class="nc" id="L58">			Logger.getLogger(SwiProlog.class.getName()).log(Level.SEVERE, null, e);</span>
+<span class="fc" id="L59">		}</span>
+<span class="fc" id="L60">	}</span>
+
+	public SwiProlog() {
+<span class="fc" id="L63">		super(new SwiPrologConverter());</span>
+<span class="fc" id="L64">	}</span>
+
+	SwiProlog(PrologConverter&lt;TermModel&gt; converter) {
+<span class="fc" id="L67">		super(converter);</span>
+<span class="fc" id="L68">	}</span>
+
+	public PrologJavaConverter getJavaConverter() {
+<span class="nc" id="L71">		return new SwiPrologJavaConverter(this);</span>
+	}
+
+	public PrologEngine newEngine() {
+<span class="fc" id="L75">		return new SwiPrologEngine(this);</span>
+	}
+
+	public PrologEngine newEngine(String path) {
+<span class="nc" id="L79">		PrologEngine engine = newEngine();</span>
+<span class="nc" id="L80">		engine.consult(path);</span>
+<span class="nc" id="L81">		return engine;</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="fc" id="L86">		return &quot;SwiProlog [converter=&quot; + converter + &quot;]&quot;;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

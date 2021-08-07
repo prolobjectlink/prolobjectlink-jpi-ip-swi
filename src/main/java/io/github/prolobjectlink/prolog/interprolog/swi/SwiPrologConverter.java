@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-ip-xsb
+ * prolobjectlink-jpi-ip-swi
  * %%
  * Copyright (C) 2012 - 2019 WorkLogic Project
  * %%
@@ -38,7 +38,7 @@ public class SwiPrologConverter extends InterPrologConverter implements PrologCo
 
 	@Override
 	public String toString() {
-		return "XsbPrologConverter";
+		return "SwiPrologConverter";
 	}
 	
 	

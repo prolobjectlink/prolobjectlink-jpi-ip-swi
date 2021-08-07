@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-ip-xsb
+ * prolobjectlink-jpi-ip-swi
  * %%
  * Copyright (C) 2012 - 2018 WorkLogic Project
  * %%

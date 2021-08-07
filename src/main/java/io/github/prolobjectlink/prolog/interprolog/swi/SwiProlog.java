@@ -1,6 +1,6 @@
 /*
  * #%L
- * prolobjectlink-jpi-ip-xsb
+ * prolobjectlink-jpi-ip-swi
  * %%
  * Copyright (C) 2012 - 2019 WorkLogic Project
  * %%
@@ -42,40 +42,18 @@ public class SwiProlog extends InterPrologProvider implements PrologProvider {
 
 	static {
 		try {
-			String arch = System.getProperty("os.arch");
-			String os = System.getProperty("os.name");
-			String xsbdir = System.getenv("XSB_DIRECTORY");
+			String xsbdir = System.getenv("SWI_DIRECTORY");
 			if (xsbdir == null) {
-				throw new UnsatisfiedLinkError("Don't forget define XSB_DIRECTORY enviroment variable");
+				throw new UnsatisfiedLinkError("Don't forget define SWI_DIRECTORY enviroment variable");
 			}
 			StringBuilder builder = new StringBuilder();
-			builder.append(xsbdir + "/config/");
-			if (os.startsWith("Windows")) {
-				if (arch.contains("64")) {
-					builder.append("x64");
-				} else if (arch.contains("86")) {
-					builder.append("x86");
-				}
-				builder.append("-pc-");
-				builder.append("windows");
-			} else if (os.equals("Linux")) {
-				if (arch.contains("64")) {
-					builder.append("x86_64");
-				} else if (arch.contains("86")) {
-					builder.append("x86");
-				}
-				// docker don't identify like -pc-
-				builder.append("-unknown-");
-				builder.append("linux");
-				builder.append("-gnu");
-			}
+			builder.append(xsbdir);
 			builder.append("/bin");
-			String xsbPath = "" + builder + "";
-			xsbPath = xsbPath.replace('/', File.separatorChar);
-			xsbPath = xsbPath.replace('\\', File.separatorChar);
-			Logger.getLogger(SwiProlog.class.getName()).log(Level.INFO, xsbPath);
-			// InterPrologEngine.engine = new NativeEngine(xsbPath);
-			InterPrologEngine.engine = new SWISubprocessEngine();
+			String swiPath = "" + builder + "";
+			swiPath = swiPath.replace('/', File.separatorChar);
+			swiPath = swiPath.replace('\\', File.separatorChar);
+			Logger.getLogger(SwiProlog.class.getName()).log(Level.INFO, swiPath);
+			InterPrologEngine.engine = new SWISubprocessEngine(swiPath);
 		} catch (UnsatisfiedLinkError e) {
 			Logger.getLogger(SwiProlog.class.getName()).log(Level.SEVERE, null, e);
 		}
@@ -105,7 +83,7 @@ public class SwiProlog extends InterPrologProvider implements PrologProvider {
 
 	@Override
 	public String toString() {
-		return "XsbProlog [converter=" + converter + "]";
+		return "SwiProlog [converter=" + converter + "]";
 	}
 
 }

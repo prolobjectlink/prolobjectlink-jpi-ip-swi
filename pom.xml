@@ -1,13 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.prolobjectlink</groupId>
 	<artifactId>prolobjectlink-jpi-ip-swi</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<name>prolobjectlink-jpi-ip-xsb</name>
+	<version>1.1-SNAPSHOT</version>
+	<name>prolobjectlink-jpi-ip-swi</name>
 	<packaging>bundle</packaging>
-	<description>Java Prolog Interface implementation over InterProlog and XSB Prolog</description>
+	<description>Java Prolog Interface implementation over InterProlog and SWI Prolog</description>
 
 	<url>https://prolobjectlink.github.io/${project.name}</url>
 	<inceptionYear>2020</inceptionYear>
@@ -456,8 +455,8 @@
 						<Implementation-Title>${project.name}</Implementation-Title>
 						<Implementation-Version>${project.version}</Implementation-Version>
 						<Bundle-DocURL>${project.url}</Bundle-DocURL>
-						<Bundle-Name>XSB Java Prolog Interface Implementation</Bundle-Name>
-						<Export-Package>${project.groupId}.prolog.interprolog.xsb</Export-Package>
+						<Bundle-Name>SWI Java Prolog Interface Implementation</Bundle-Name>
+						<Export-Package>${project.groupId}.prolog.interprolog.swi</Export-Package>
 						<Import-Package>javax.script;com.declarativa.interprolog;
 							com.declarativa.interprolog.util; com.igormaznitsa.prologparser;
 							com.igormaznitsa.prologparser.terms;
@@ -469,12 +468,12 @@
 							junit.framework; org.junit.runner;
 
 							${project.groupId}.*;provide:=true</Import-Package>
-						<Bundle-SymbolicName>${project.groupId}.prolog.interprolog.xsb.plugin;singleton:=true</Bundle-SymbolicName>
+						<Bundle-SymbolicName>${project.groupId}.prolog.interprolog.swi.plugin;singleton:=true</Bundle-SymbolicName>
 						<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
-						<Embed-Dependency>*;scope=compile|runtime;inline=false</Embed-Dependency>
-						<Embed-Directory>target/dependency</Embed-Directory>
-						<Embed-StripGroup>true</Embed-StripGroup>
-						<Embed-Transitive>true</Embed-Transitive>
+						<!-- <Embed-Dependency>*;scope=compile|runtime;inline=false</Embed-Dependency> -->
+						<!-- <Embed-Directory>target/dependency</Embed-Directory> -->
+						<!-- <Embed-StripGroup>true</Embed-StripGroup> -->
+						<!-- <Embed-Transitive>true</Embed-Transitive> -->
 					</instructions>
 				</configuration>
 				<executions>
@@ -700,24 +699,24 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
-			<plugin>
-				<artifactId>maven-changelog-plugin</artifactId>
-				<version>2.2</version>
-				<reportSets>
-					<reportSet>
-						<id>dual-report</id>
-						<configuration>
-							<type>range</type>
-							<range>30</range>
-						</configuration>
-						<reports>
-							<report>changelog</report>
-							<report>file-activity</report>
-							<report>dev-activity</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
+			<!-- <plugin> -->
+			<!-- <artifactId>maven-changelog-plugin</artifactId> -->
+			<!-- <version>2.2</version> -->
+			<!-- <reportSets> -->
+			<!-- <reportSet> -->
+			<!-- <id>dual-report</id> -->
+			<!-- <configuration> -->
+			<!-- <type>range</type> -->
+			<!-- <range>30</range> -->
+			<!-- </configuration> -->
+			<!-- <reports> -->
+			<!-- <report>changelog</report> -->
+			<!-- <report>file-activity</report> -->
+			<!-- <report>dev-activity</report> -->
+			<!-- </reports> -->
+			<!-- </reportSet> -->
+			<!-- </reportSets> -->
+			<!-- </plugin> -->
 		</plugins>
 	</reporting>
 

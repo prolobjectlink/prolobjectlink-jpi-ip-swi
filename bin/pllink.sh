@@ -2,7 +2,7 @@
 
 ###
 # #%L
-# prolobjectlink-jpi-ip-xsb
+# prolobjectlink-jpi-ip-swi
 # %%
 # Copyright (C) 2020 Prolobjectlink Project
 # %%
@@ -19,4 +19,4 @@
 # limitations under the License.
 # #L%
 ###
-java -classpath "$(dirname "$(pwd)")/lib/*" io.github.prolobjectlink.prolog.interprolog.xsb.XsbPrologConsole ${1+"$@"}
+java -classpath "$(dirname "$(pwd)")/lib/*" io.github.prolobjectlink.prolog.interprolog.swi.SwiPrologConsole ${1+"$@"}

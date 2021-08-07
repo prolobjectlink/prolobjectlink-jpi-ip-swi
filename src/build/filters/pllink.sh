@@ -2,7 +2,7 @@
 
 ###
 # #%L
-# prolobjectlink-jpi-ip-xsb
+# prolobjectlink-jpi-ip-swi
 # %%
 # Copyright (C) 2020 Prolobjectlink Project
 # %%

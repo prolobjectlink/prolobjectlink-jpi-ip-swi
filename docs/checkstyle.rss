@@ -2,20 +2,20 @@
 
 <rss version="0.91">
   <channel>
-    <title>prolobjectlink-jpi-ip-xsb - Checkstyle report</title>
-    <link>https://prolobjectlink.github.io/prolobjectlink-jpi-ip-xsb</link>
-    <description>prolobjectlink-jpi-ip-xsb - Checkstyle report</description>
+    <title>prolobjectlink-jpi-ip-swi - Checkstyle report</title>
+    <link>https://prolobjectlink.github.io/prolobjectlink-jpi-ip-swi</link>
+    <description>prolobjectlink-jpi-ip-swi - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2020 Prolobjectlink Project</copyright>
+    <copyright>&#169;2020 - 2021 Prolobjectlink Project</copyright>
     <item>
       <title>File: 6,
-             Errors: 155,
+             Errors: 139,
              Warnings: 0,
              Infos: 0
       </title>
-            <link>https://prolobjectlink.github.io/prolobjectlink-jpi-ip-xsb/checkstyle.html</link>
+            <link>https://prolobjectlink.github.io/prolobjectlink-jpi-ip-swi/checkstyle.html</link>
       <description>
-        <p>Click <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-xsb/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-swi/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -29,7 +29,21 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-xsb/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.xsb.XsbPrologConverter.java">io/github/prolobjectlink/prolog/interprolog/xsb/XsbPrologConverter.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-swi/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.swi.SwiPrologEngine.java">io/github/prolobjectlink/prolog/interprolog/swi/SwiPrologEngine.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  29
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-swi/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.swi.SwiPrologConverter.java">io/github/prolobjectlink/prolog/interprolog/swi/SwiPrologConverter.java</a>
                 </td>
                 <td>
                   0
@@ -43,21 +57,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-xsb/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.xsb.XsbPrologEngine.java">io/github/prolobjectlink/prolog/interprolog/xsb/XsbPrologEngine.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  25
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-xsb/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.xsb.XsbPrologJavaConverter.java">io/github/prolobjectlink/prolog/interprolog/xsb/XsbPrologJavaConverter.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-swi/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.swi.SwiPrologJavaConverter.java">io/github/prolobjectlink/prolog/interprolog/swi/SwiPrologJavaConverter.java</a>
                 </td>
                 <td>
                   0
@@ -71,7 +71,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-xsb/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.xsb.XsbPrologScriptFactory.java">io/github/prolobjectlink/prolog/interprolog/xsb/XsbPrologScriptFactory.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-swi/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.swi.SwiPrologScriptFactory.java">io/github/prolobjectlink/prolog/interprolog/swi/SwiPrologScriptFactory.java</a>
                 </td>
                 <td>
                   0
@@ -85,7 +85,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-xsb/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.xsb.XsbProlog.java">io/github/prolobjectlink/prolog/interprolog/xsb/XsbProlog.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-swi/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.swi.SwiProlog.java">io/github/prolobjectlink/prolog/interprolog/swi/SwiProlog.java</a>
                 </td>
                 <td>
                   0
@@ -94,12 +94,12 @@
                   0
                 </td>
                 <td>
-                  78
+                  58
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-xsb/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.xsb.XsbPrologConsole.java">io/github/prolobjectlink/prolog/interprolog/xsb/XsbPrologConsole.java</a>
+                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-ip-swi/checkstyle.html#io.github.prolobjectlink.prolog.interprolog.swi.SwiPrologConsole.java">io/github/prolobjectlink/prolog/interprolog/swi/SwiPrologConsole.java</a>
                 </td>
                 <td>
                   0
