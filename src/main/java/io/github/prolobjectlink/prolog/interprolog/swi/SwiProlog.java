@@ -42,12 +42,12 @@ public class SwiProlog extends InterPrologProvider implements PrologProvider {
 
 	static {
 		try {
-			String xsbdir = System.getenv("SWI_DIRECTORY");
-			if (xsbdir == null) {
+			String swidir = System.getenv("SWI_DIRECTORY");
+			if (swidir == null) {
 				throw new UnsatisfiedLinkError("Don't forget define SWI_DIRECTORY enviroment variable");
 			}
 			StringBuilder builder = new StringBuilder();
-			builder.append(xsbdir);
+			builder.append(swidir);
 			builder.append("/bin");
 			String swiPath = "" + builder + "";
 			swiPath = swiPath.replace('/', File.separatorChar);

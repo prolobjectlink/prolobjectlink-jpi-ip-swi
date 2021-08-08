@@ -31,10 +31,10 @@ import javax.script.ScriptException;
 import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class PrologScriptEngineManagerTest extends PrologBaseTest {
 
 	@Test
-	@Ignore
 	public void test() throws ScriptException, FileNotFoundException {
 
 		ScriptEngineManager manager = new ScriptEngineManager();

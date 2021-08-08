@@ -38,7 +38,7 @@ public class SwiPrologEngine extends InterPrologEngine implements PrologEngine {
 	}
 
 	public final String getLicense() {
-		return Licenses.LGPL_V3;
+		return Licenses.BSD_2;
 	}
 
 	public final String getVersion() {
@@ -46,11 +46,11 @@ public class SwiPrologEngine extends InterPrologEngine implements PrologEngine {
 	}
 
 	public final String getVendor() {
-		return "XSB Prolog";
+		return "SWI-Prolog";
 	}
 
 	public final String getName() {
-		return "XSB Prolog";
+		return "SWI-Prolog";
 	}
 
 	public final List<String> verify() {
