@@ -4,4 +4,4 @@ prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPro
 prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPrologConsole,6,6,0,0,2,2,1,1,1,1
 prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPrologJavaConverter,4,0,0,0,2,0,1,0,1,0
 prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiProlog,26,78,1,1,7,18,3,5,2,5
-prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPrologEngine,6,9,0,0,3,4,3,3,3,3
+prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPrologEngine,4,11,0,0,2,5,2,4,2,4
