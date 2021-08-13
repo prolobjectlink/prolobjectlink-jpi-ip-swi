@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.prolobjectlink</groupId>
@@ -512,7 +513,8 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.rat</groupId>
-				<artifactId>apache-rat-plugin</artifactId><version>0.13</version>
+				<artifactId>apache-rat-plugin</artifactId>
+				<version>0.13</version>
 				<executions>
 					<execution>
 						<phase>verify</phase>
@@ -557,6 +559,51 @@
 						<version>5.0.3</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<mavenHome>../apache-maven</mavenHome>
+					<goals>deploy -P release</goals>
+					<preparationGoals>clean install site</preparationGoals>
+					<allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+					<tagNameFormat>v-@{project.version}</tagNameFormat>
+					<useReleaseProfile>false</useReleaseProfile>
+					<remoteTagging>false</remoteTagging>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.siom79.japicmp</groupId>
+				<artifactId>japicmp-maven-plugin</artifactId>
+				<version>0.15.3</version>
+				<configuration>
+					<oldVersion>
+						<dependency>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>${project.artifactId}</artifactId>
+							<version>1.0</version>
+							<type>jar</type>
+						</dependency>
+					</oldVersion>
+					<newVersion>
+						<file>
+							<path>${project.build.directory}/${project.artifactId}-${project.version}.jar</path>
+						</file>
+					</newVersion>
+					<parameter>
+						<htmlTitle>Changelog API</htmlTitle>
+					</parameter>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>cmp</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -717,6 +764,36 @@
 			<!-- </reportSet> -->
 			<!-- </reportSets> -->
 			<!-- </plugin> -->
+			<plugin>
+				<groupId>com.github.siom79.japicmp</groupId>
+				<artifactId>japicmp-maven-plugin</artifactId>
+				<version>0.15.3</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>cmp-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+				<configuration>
+					<oldVersion>
+						<dependency>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>${project.artifactId}</artifactId>
+							<version>1.0</version>
+							<type>jar</type>
+						</dependency>
+					</oldVersion>
+					<newVersion>
+						<file>
+							<path>${project.build.directory}/${project.artifactId}-${project.version}.jar</path>
+						</file>
+					</newVersion>
+					<parameter>
+						<htmlTitle>Changelog API</htmlTitle>
+					</parameter>
+				</configuration>
+			</plugin>
 		</plugins>
 	</reporting>
 
