@@ -29,7 +29,6 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
@@ -46,20 +45,15 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import io.github.prolobjectlink.prolog.PrologAtom;
-import io.github.prolobjectlink.prolog.PrologEngine;
 import io.github.prolobjectlink.prolog.PrologEntry;
 import io.github.prolobjectlink.prolog.PrologFloat;
-import io.github.prolobjectlink.prolog.PrologFunction;
 import io.github.prolobjectlink.prolog.PrologInteger;
 import io.github.prolobjectlink.prolog.PrologList;
 import io.github.prolobjectlink.prolog.PrologMap;
-import io.github.prolobjectlink.prolog.PrologMethod;
 import io.github.prolobjectlink.prolog.PrologStructure;
 import io.github.prolobjectlink.prolog.PrologTerm;
 import io.github.prolobjectlink.prolog.PrologThread;
 import io.github.prolobjectlink.prolog.PrologThreadPool;
-import io.github.prolobjectlink.prolog.PrologType;
-import io.github.prolobjectlink.prolog.PrologTypedField;
 import io.github.prolobjectlink.prolog.PrologVariable;
 
 public class PrologProviderTest extends PrologBaseTest {
@@ -399,6 +393,7 @@ public class PrologProviderTest extends PrologBaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void testNewEntryObjectObject() {
 		PrologTerm entry = provider.newEntry("X", "elephant");
 		PrologEntry e = entry.cast();
@@ -452,195 +447,7 @@ public class PrologProviderTest extends PrologBaseTest {
 	}
 
 	@Test
-	public void testRegister() {
-		ParentMapping parentMapping = new ParentMapping();
-		PrologEngine engine = provider.newEngine();
-		engine.register(parentMapping);
-		assertEquals(1, engine.size());
-		assertNotNull(engine.get(Parent.class));
-		assertSame(parentMapping, engine.get(Parent.class));
-	}
-
-	@Test
-	public void testGetTermPrologableOfQ() {
-		ParentMapping parentMapping = new ParentMapping();
-		PrologEngine engine = provider.newEngine();
-		engine.register(parentMapping);
-		assertEquals(1, engine.size());
-		assertNotNull(engine.get(Parent.class));
-		assertSame(parentMapping, engine.get(Parent.class));
-		assertEquals(provider.parseTerm("parent(Name,Child)"), engine.getTerm(parentMapping));
-	}
-
-	@Test
 	@Ignore
-	public void testGetTermPrologableOfQO() {
-		Parent parent = new Parent("tom", "bob");
-		ParentMapping parentMapping = new ParentMapping();
-		PrologEngine engine = provider.newEngine();
-		engine.register(parentMapping);
-		assertEquals(1, engine.size());
-		assertNotNull(engine.get(Parent.class));
-		assertSame(parentMapping, engine.get(Parent.class));
-		assertEquals(provider.parseTerm("tom(parent,bob)"), engine.getTerm(parentMapping, parent));
-	}
-
-	@Test
-	public void testUnregister() {
-		ParentMapping parentMapping = new ParentMapping();
-		PrologEngine engine = provider.newEngine();
-		engine.register(parentMapping);
-		assertEquals(1, engine.size());
-		assertNotNull(engine.get(Parent.class));
-		assertSame(parentMapping, engine.get(Parent.class));
-		engine.unregister(parentMapping);
-		assertEquals(0, engine.size());
-		assertNull(engine.get(Parent.class));
-	}
-
-	@Test
-	public void testNewObjectString() {
-		assertEquals("", provider.newObject(String.class.getName()));
-		assertEquals(0, provider.newObject(Integer.class.getName()));
-	}
-
-	@Test
-	public void testNewObjectStringObjectArray() {
-		assertSame(JFrame.class, provider.newObject(JFrame.class.getName(), "Hello World").getClass());
-	}
-
-	@Test
-	public void testNewObjectPrologAtom() {
-		assertEquals("", provider.newObject(provider.newAtom(String.class.getName())));
-		assertEquals(0, provider.newObject(provider.newAtom(Integer.class.getName())));
-	}
-
-	@Test
-	public void testNewObjectPrologAtomPrologTermArray() {
-		assertSame(JFrame.class, provider.newObject(JFrame.class.getName(), "Hello World").getClass());
-	}
-
-	@Test
-	public void testGetObjectObjectString() {
-
-		Object object = provider.newObject(JFrame.class.getName(), "Hello World");
-		Object exit_on_close = provider.getObject(object, "EXIT_ON_CLOSE");
-		assertEquals(3, exit_on_close);
-
-		object = provider.newObject(Parent.class.getName(), "tom", "bob");
-		Object parent = provider.getObject(object, "parent");
-		Object child = provider.getObject(object, "child");
-		assertEquals("tom", parent);
-		assertEquals("bob", child);
-
-	}
-
-	@Test
-	public void testGetObjectObjectPrologAtom() {
-		Object object = provider.newObject(Parent.class.getName(), "tom", "bob");
-		Object parent = provider.getObject(object, provider.newAtom("parent"));
-		Object child = provider.getObject(object, provider.newAtom("child"));
-		assertEquals("tom", parent);
-		assertEquals("bob", child);
-	}
-
-	@Test
-	public void testSetObjectObjectStringObject() {
-		Object object = provider.newObject(Parent.class.getName(), "tom", "bob");
-		Object parent = provider.getObject(object, "parent");
-		Object child = provider.getObject(object, "child");
-		assertEquals("tom", parent);
-		assertEquals("bob", child);
-		provider.setObject(object, "parent", "liz");
-		provider.setObject(object, "child", "ann");
-		parent = provider.getObject(object, "parent");
-		child = provider.getObject(object, "child");
-		assertEquals("liz", parent);
-		assertEquals("ann", child);
-	}
-
-	@Test
-	public void testSetObjectObjectPrologAtomPrologTerm() {
-		Object object = provider.newObject(Parent.class.getName(), "tom", "bob");
-		Object parent = provider.getObject(object, provider.newAtom("parent"));
-		Object child = provider.getObject(object, provider.newAtom("child"));
-		assertEquals("tom", parent);
-		assertEquals("bob", child);
-		provider.setObject(object, provider.newAtom("parent"), provider.newAtom("liz"));
-		provider.setObject(object, provider.newAtom("child"), provider.newAtom("ann"));
-		parent = provider.getObject(object, "parent");
-		child = provider.getObject(object, "child");
-		assertEquals("liz", parent);
-		assertEquals("ann", child);
-	}
-
-	@Test
-	public void testCallObjectObjectStringObjectArray() {
-
-		Object obj = provider.newObject(Parent.class.getName());
-		Object parent = provider.callObject(obj, "getParent");
-		Object child = provider.callObject(obj, "getChild");
-		assertNull(parent);
-		assertNull(child);
-		Object ret = provider.callObject(obj, "setParent", "tom");
-		Object yield = provider.callObject(obj, "setChild", "bob");
-		parent = provider.callObject(obj, "getParent");
-		child = provider.callObject(obj, "getChild");
-		assertEquals("tom", parent);
-		assertEquals("bob", child);
-		assertNull(ret); // because is void the return type
-		assertNull(yield); // because is void the return type
-
-		Object object = provider.newObject(Parent.class.getName(), "tom", "bob");
-		Object result = provider.callObject(object, "equals", object);
-		assertEquals(true, result);
-
-	}
-
-	@Test
-	public void testCallObjectObjectPrologAtomPrologTermArray() {
-
-		Object obj = provider.newObject(Parent.class.getName());
-		Object parent = provider.callObject(obj, provider.newAtom("getParent"));
-		Object child = provider.callObject(obj, provider.newAtom("getChild"));
-		assertNull(parent);
-		assertNull(child);
-		Object ret = provider.callObject(obj, provider.newAtom("setParent"), provider.newAtom("tom"));
-		Object yield = provider.callObject(obj, provider.newAtom("setChild"), provider.newAtom("bob"));
-		parent = provider.callObject(obj, provider.newAtom("getParent"));
-		child = provider.callObject(obj, provider.newAtom("getChild"));
-		assertEquals("tom", parent);
-		assertEquals("bob", child);
-		assertNull(ret); // because is void the return type
-		assertNull(yield); // because is void the return type
-
-		Object object = provider.newObject(Parent.class.getName(), "tom", "bob");
-		Object result = provider.callObject(object, provider.newAtom("equals"), provider.prologTrue());
-		assertEquals(false, result);
-
-	}
-
-	@Test
-	public void testCallObjectObjectString() {
-
-		Object object = provider.newObject(Parent.class.getName(), "tom", "bob");
-		Object parent = provider.callObject(object, "getParent");
-		Object child = provider.callObject(object, "getChild");
-		assertEquals("tom", parent);
-		assertEquals("bob", child);
-
-	}
-
-	@Test
-	public void testCallObjectObjectPrologAtom() {
-		Object object = provider.newObject(Parent.class.getName(), "tom", "bob");
-		Object parent = provider.callObject(object, provider.newAtom("getParent"));
-		assertEquals("tom", parent);
-		Object chield = provider.callObject(object, provider.newAtom("getChild"));
-		assertEquals("bob", chield);
-	}
-
-	@Test
 	public void testNewThreadPrologTermArray() throws Exception {
 
 		PrologTerm assertion = provider.prologTrue();
@@ -661,6 +468,7 @@ public class PrologProviderTest extends PrologBaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void testNewThreadStringPrologTermArray() throws Exception {
 
 		PrologTerm assertion = provider.prologTrue();
@@ -682,6 +490,7 @@ public class PrologProviderTest extends PrologBaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void testCurrentThread() throws Exception {
 
 		assertNotNull(provider.currentThread(provider.prologTrue()));
@@ -739,130 +548,6 @@ public class PrologProviderTest extends PrologBaseTest {
 		assertFalse(pool.isShutdown());
 		pool.shutdown();
 		assertTrue(pool.isShutdown());
-	}
-
-	@Test
-	public void testNewFieldPrologTermPrologTerm() {
-		PrologTypedField field = provider.newField("X", "ATOM").cast();
-		assertTrue(field.isField());
-	}
-
-	@Test
-	public void testNewFieldStringString() {
-		PrologTypedField field = provider.newField(x, PrologType.ATOM).cast();
-		assertTrue(field.isField());
-	}
-
-	@Test
-	public void testNewMethodPrologTerm() {
-		PrologTerm blackCat = provider.newStructure("black", cat);
-		PrologMethod m = provider.newMethod(blackCat).cast();
-		assertTrue(m.isMethod());
-	}
-
-	@Test
-	public void testNewMethodPrologTermPrologTerm() {
-		PrologTerm dark = provider.newStructure("dark", x);
-		PrologTerm black = provider.newStructure("black", x);
-		PrologMethod m = provider.newMethod(dark, black).cast();
-		assertTrue(m.isMethod());
-	}
-
-	@Test
-	public void testNewMethodPrologTermPrologTermArray() {
-		PrologTerm dark = provider.newStructure("dark", x);
-		PrologTerm black = provider.newStructure("black", x);
-		PrologTerm brown = provider.newStructure("brown", x);
-		PrologMethod m = provider.newMethod(dark, black, brown).cast();
-		assertTrue(m.isMethod());
-	}
-
-	@Test
-	public void testNewFunctionPrologTermPrologTerm() {
-		PrologTerm one = provider.newDouble(1.0);
-		PrologTerm zero = provider.newDouble(0.0);
-		PrologTerm v = provider.newVariable("V", 4);
-		PrologTerm fuzzy = provider.newStructure("fuzzy_metrics", x, y, z);
-		PrologFunction fuzzy_metrics_1 = provider.newFunction(fuzzy, one).cast();
-		PrologFunction fuzzy_metrics_2 = provider.newFunction(fuzzy, zero).cast();
-		PrologFunction fuzzy_metrics_3 = provider.newFunction(fuzzy, v).cast();
-		assertTrue(fuzzy_metrics_1.isFunction());
-		assertTrue(fuzzy_metrics_2.isFunction());
-		assertTrue(fuzzy_metrics_3.isFunction());
-	}
-
-	@Test
-	public void testNewFunctionPrologTermPrologTermPrologTerm() {
-		PrologTerm one = provider.newDouble(1.0);
-		PrologTerm zero = provider.newDouble(0.0);
-		PrologTerm v = provider.newVariable("V", 4);
-		PrologTerm fuzzy = provider.newStructure("fuzzy_metrics", x, y, z);
-		PrologTerm e1 = provider.newStructure(x, ">=", provider.newStructure(y, "+", z));
-		PrologTerm e2 = provider.newStructure(x, "<=", provider.newStructure(y, "-", z));
-		PrologTerm e3 = provider.newStructure(x, "<=", provider.newStructure(y, "-", z));
-		PrologFunction fuzzy_metrics_1 = provider.newFunction(fuzzy, one, e1).cast();
-		PrologFunction fuzzy_metrics_2 = provider.newFunction(fuzzy, zero, e2).cast();
-		PrologFunction fuzzy_metrics_3 = provider.newFunction(fuzzy, v, e3).cast();
-		assertTrue(fuzzy_metrics_1.isFunction());
-		assertTrue(fuzzy_metrics_2.isFunction());
-		assertTrue(fuzzy_metrics_3.isFunction());
-	}
-
-	@Test
-	public void testNewFunctionPrologTermPrologTermPrologTermArray() {
-		PrologTerm one = provider.newDouble(1.0);
-		PrologTerm zero = provider.newDouble(0.0);
-		PrologTerm v = provider.newVariable("V", 4);
-		PrologTerm fuzzy = provider.newStructure("fuzzy_metrics", x, y, z);
-		PrologTerm e1 = provider.newStructure(x, ">=", provider.newStructure(y, "+", z));
-		PrologTerm e2 = provider.newStructure(x, "<=", provider.newStructure(y, "-", z));
-		PrologTerm e3 = provider.newStructure(x, "<=", provider.newStructure(y, "-", z));
-		PrologFunction fuzzy_metrics_1 = provider.newFunction(fuzzy, one, e1, e2, e3).cast();
-		PrologFunction fuzzy_metrics_2 = provider.newFunction(fuzzy, zero, e1, e2, e3).cast();
-		PrologFunction fuzzy_metrics_3 = provider.newFunction(fuzzy, v, e1, e2, e3).cast();
-		assertTrue(fuzzy_metrics_1.isFunction());
-		assertTrue(fuzzy_metrics_2.isFunction());
-		assertTrue(fuzzy_metrics_3.isFunction());
-	}
-
-	@Test
-	public void testNewFunctionPrologTermObject() {
-		PrologTerm v = provider.newVariable("V", 4);
-		PrologTerm fuzzy = provider.newStructure("fuzzy_metrics", x, y, z);
-		PrologFunction fuzzy_metrics_1 = provider.newFunction(fuzzy, 1.0).cast();
-		PrologFunction fuzzy_metrics_2 = provider.newFunction(fuzzy, 0.0).cast();
-		PrologFunction fuzzy_metrics_3 = provider.newFunction(fuzzy, v).cast();
-		assertTrue(fuzzy_metrics_1.isFunction());
-		assertTrue(fuzzy_metrics_2.isFunction());
-		assertTrue(fuzzy_metrics_3.isFunction());
-	}
-
-	@Test
-	public void testNewFunctionPrologTermObjectPrologTerm() {
-		PrologTerm fuzzy = provider.newStructure("fuzzy_metrics", x, y, z);
-		PrologTerm e1 = provider.newStructure(x, ">=", provider.newStructure(y, "+", z));
-		PrologTerm e2 = provider.newStructure(x, "<=", provider.newStructure(y, "-", z));
-		PrologTerm e3 = provider.newStructure(x, "<=", provider.newStructure(y, "-", z));
-		PrologFunction fuzzy_metrics_1 = provider.newFunction(fuzzy, 1.0, e1).cast();
-		PrologFunction fuzzy_metrics_2 = provider.newFunction(fuzzy, 0.0, e2).cast();
-		PrologFunction fuzzy_metrics_3 = provider.newFunction(fuzzy, "V", e3).cast();
-		assertTrue(fuzzy_metrics_1.isFunction());
-		assertTrue(fuzzy_metrics_2.isFunction());
-		assertTrue(fuzzy_metrics_3.isFunction());
-	}
-
-	@Test
-	public void testNewFunctionPrologTermObjectPrologTermArray() {
-		PrologTerm fuzzy = provider.newStructure("fuzzy_metrics", x, y, z);
-		PrologTerm e1 = provider.newStructure(x, ">=", provider.newStructure(y, "+", z));
-		PrologTerm e2 = provider.newStructure(x, "<=", provider.newStructure(y, "-", z));
-		PrologTerm e3 = provider.newStructure(x, "<=", provider.newStructure(y, "-", z));
-		PrologFunction fuzzy_metrics_1 = provider.newFunction(fuzzy, 1.0, e1, e2, e3).cast();
-		PrologFunction fuzzy_metrics_2 = provider.newFunction(fuzzy, 0.0, e1, e2, e3).cast();
-		PrologFunction fuzzy_metrics_3 = provider.newFunction(fuzzy, "V", e1, e2, e3).cast();
-		assertTrue(fuzzy_metrics_1.isFunction());
-		assertTrue(fuzzy_metrics_2.isFunction());
-		assertTrue(fuzzy_metrics_3.isFunction());
 	}
 
 }

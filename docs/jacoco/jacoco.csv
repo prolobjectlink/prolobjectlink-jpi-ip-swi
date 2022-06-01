@@ -1,7 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPrologScriptFactory,4,7,0,0,2,2,1,1,1,1
-prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPrologConverter,0,10,0,0,0,3,0,3,0,3
-prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPrologConsole,6,6,0,0,2,2,1,1,1,1
-prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPrologJavaConverter,4,0,0,0,2,0,1,0,1,0
-prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiProlog,26,78,1,1,7,18,3,5,2,5
-prolobjectlink-jpi-ip-swi,io.github.prolobjectlink.prolog.interprolog.swi,SwiPrologEngine,4,11,0,0,2,5,2,4,2,4
